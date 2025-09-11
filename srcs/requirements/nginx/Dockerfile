@@ -1,4 +1,4 @@
-FROM debian:trixie
+FROM debian:bookworm 
 ARG CRED_PATH CRED_CERT CRED_KEY COUNTRY STATE LOCALITY ORGANIZATION ORG_UNIT COMMON_NAME
 RUN apt update && apt upgrade -y && apt install -y nginx openssl gettext-base
 RUN mkdir -p ${CRED_PATH}
