@@ -1,0 +1,7 @@
+.env
+Makefile
+secrets/
+.git/
+.gitignore
+*.log
+tmp/

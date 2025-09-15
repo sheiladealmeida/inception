@@ -39,6 +39,10 @@ services:
       - v_web:/var/www/html
     env_file:
       - .env
+    secrets:
+      - wp_admin_password
+      - wp_guest_password
+      - db_password
   mariadb:
     image: mariadb
     build: requirements/mariadb/.
@@ -52,6 +56,9 @@ services:
       - v_db:/var/lib/mysql
     env_file:
       - .env
+    secrets:
+      - db_root_password
+      - db_password
 volumes:
   v_web:
     name: v_web
@@ -71,3 +78,12 @@ networks:
   inception:
     name: inception
     driver: bridge
+secrets:
+  db_root_password:
+    file: ../secrets/db_root_password.txt
+  db_password:
+    file: ../secrets/db_password.txt
+  wp_admin_password:
+    file: ../secrets/wp_admin_password.txt
+  wp_guest_password:
+    file: ../secrets/wp_guest_password.txt
