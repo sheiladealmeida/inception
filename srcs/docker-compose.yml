@@ -1,7 +1,8 @@
 services:
 
   nginx:
-    build: 
+    image: nginx
+    build:
       context: requirements/nginx/.
       args:
         - CRED_PATH
@@ -24,6 +25,7 @@ services:
     volumes:
       - v_web:/var/www/html
   wordpress:
+    image: wordpress
     build: requirements/wordpress/.
     container_name: wordpress
     restart: on-failure
@@ -38,6 +40,7 @@ services:
     env_file:
       - .env
   mariadb:
+    image: mariadb
     build: requirements/mariadb/.
     container_name: mariadb
     restart: on-failure
@@ -51,12 +54,14 @@ services:
       - .env
 volumes:
   v_web:
+    name: v_web
     driver: local
     driver_opts:
       type: none
       o: bind
       device: /home/shrodrig/data/wordpress
   v_db:
+    name: v_db
     driver: local
     driver_opts:
       type: none
@@ -64,4 +69,5 @@ volumes:
       device: /home/shrodrig/data/mariadb
 networks:
   inception:
+    name: inception
     driver: bridge
